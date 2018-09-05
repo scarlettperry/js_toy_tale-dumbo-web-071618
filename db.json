@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Woody",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Woody-PNG-Photos.png",
-      "likes": 5
+      "likes": "6"
     },
     {
       "id": 2,
@@ -56,8 +56,20 @@
     {
       "name": "Lots-o'-Huggin' Bear",
       "image": "https://vignette.wikia.nocookie.net/disney/images/a/a3/LotsoHugginBear.png/revision/latest?cb=20130202200217",
-      "likes": "0",
+      "likes": "1",
       "id": 10
+    },
+    {
+      "name": "h",
+      "image": "googe.com",
+      "likes": "0",
+      "id": 11
+    },
+    {
+      "name": "sid",
+      "image": "https://cdn.shopify.com/s/files/1/0318/2649/products/41JhTBLtIWL_large.jpg?v=1494439988",
+      "likes": "1",
+      "id": 12
     }
   ]
 }

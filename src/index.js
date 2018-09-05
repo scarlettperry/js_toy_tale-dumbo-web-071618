@@ -58,36 +58,39 @@ document.addEventListener("DOMContentLoaded", function () {
     const newToyName = document.querySelector("[name=name]")
     const newToyPic = document.querySelector("[name=image]")
 
-    //create elements
-    const newToyCard = document.createElement("div")
-    newToyCard.className = "card"
-    const newTName = document.createElement("h2")
-    const newTImg = document.createElement("img")
-    newTImg.className = "toy-avatar"
-    const newLikes = document.createElement("p")
-    const newLikeButton = document.createElement("button")
-    newLikeButton.innerText = "Like"
-    newLikeButton.className = "like-btn"
-
-    //add input to elements
-    newTName.innerText = newToyName.value
-    newTImg.src = newToyPic.value
-    newLikes.innerText = 0
-    console.log(newLikes)
-
-    //add data to dom
-    newToyCard.append(newTName, newTImg, newLikes, newLikeButton)
-    toyCollection.append(newToyCard)
-
     // make a fetch POST
     fetch("http://localhost:3000/toys", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({name: newToyName.value, image: newToyPic.value, likes: newLikes.innerText})
+      body: JSON.stringify({name: newToyName.value, image: newToyPic.value, likes: 0})
     })
+    .then(resp => resp.json())
+    .then(function (json) {
+      const toy = json
+      //create elements
+      const newToyCard = document.createElement("div")
+      newToyCard.className = "card"
+      newToyCard.dataset.id = toy.id
+      const newTName = document.createElement("h2")
+      const newTImg = document.createElement("img")
+      newTImg.className = "toy-avatar"
+      const newLikes = document.createElement("p")
+      const newLikeButton = document.createElement("button")
+      newLikeButton.innerText = "Like"
+      newLikeButton.className = "like-btn"
 
+      //add input to elements
+      newTName.innerText = newToyName.value
+      newTImg.src = newToyPic.value
+      newLikes.innerText = toy.likes
+
+      //add data to dom
+      newToyCard.append(newTName, newTImg, newLikes, newLikeButton)
+      toyCollection.append(newToyCard)
+      newLikeButton.addEventListener("click", increaseCount)
+    })
     //how to add id to div if the toy hasn't been created yet???
   })
 
@@ -106,6 +109,5 @@ document.addEventListener("DOMContentLoaded", function () {
       body: JSON.stringify({likes: upLikes.innerText})
     })
   }
-
 
 })
